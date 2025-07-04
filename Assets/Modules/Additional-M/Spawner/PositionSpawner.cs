@@ -13,4 +13,15 @@ namespace _KotletaGames.Additional_M
             return UnityEngine.Object.Instantiate(prefab, position, Container.rotation, Container);
         }
     }
+
+    [Serializable]
+    public struct PositionSpawner
+    {
+        [field: SerializeField] public Transform Container { get; private set; }
+
+        public T Spawn<T>(T prefab, Vector3 position) where T : UnityEngine.Object
+        {
+            return UnityEngine.Object.Instantiate(prefab, position, Container.rotation, Container);
+        }
+    }
 }

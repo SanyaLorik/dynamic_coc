@@ -31,28 +31,21 @@ public class PointerDragOnGround : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (TryGetGroundPosition(eventData, out Vector3 position))
-        {
+        if (TryGetGroundPosition(eventData, out Vector3 position) == true)
             OnDragEnded?.Invoke(position);
-        }
     }
 
     private void UpdateDragPosition(PointerEventData eventData)
     {
         if (TryGetGroundPosition(eventData, out Vector3 position))
-        {
             OnDragPositionChanged?.Invoke(position);
-        }
     }
 
     private bool TryGetGroundPosition(PointerEventData eventData, out Vector3 position)
     {
         position = Vector3.zero;
-
-        // Создаем луч из камеры в точку касания
         Ray ray = _mainCamera.ScreenPointToRay(eventData.position);
 
-        // Пускаем луч и проверяем, попал ли он в _ground
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundLayer))
         {
             if (hit.collider.gameObject == _ground)

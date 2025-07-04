@@ -2,7 +2,6 @@ using _KotletaGames.Additional_M;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
