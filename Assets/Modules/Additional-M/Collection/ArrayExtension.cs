@@ -73,6 +73,16 @@ namespace _KotletaGames.Additional_M
                 action(item);
         }
 
+        public static void ForEachWithIndexer<T>(this IEnumerable<T> array, Action<T, int> action)
+        {
+            int i = 0;
+            foreach (var item in array)
+            {
+                action(item, i);
+                i++;
+            }
+        }
+
         public static int IndexOf<T>(this IEnumerable<T> values, T arg)
         {
             int index = 0;

@@ -552,8 +552,8 @@ GameObject:
   - component: {fileID: 262794027}
   - component: {fileID: 262794026}
   - component: {fileID: 262794025}
-  m_Layer: 0
-  m_Name: Plane
+  m_Layer: 6
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1170,6 +1170,91 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &638600211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638600212}
+  m_Layer: 0
+  m_Name: NoZenject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &638600212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638600211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 672167914}
+  m_Father: {fileID: 794514132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &672167913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672167914}
+  - component: {fileID: 672167915}
+  m_Layer: 0
+  m_Name: Construction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672167914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672167913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 638600212}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &672167915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672167913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef81620a4873424a92480e33a099e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation:
+    _startBuildings:
+    - {fileID: 1743338263}
+    - {fileID: 142388726}
+    _stopBuildings:
+    - {fileID: 2030652083}
+  _startBuildings: {fileID: 2030652080}
+  _stopBuildings: {fileID: 1743338260}
+  _pointerDragOnGround: {fileID: 1154529847}
 --- !u!1 &726339185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,6 +1429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1836046008}
+  - {fileID: 638600212}
   - {fileID: 837456707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1569,6 +1655,7 @@ GameObject:
   - component: {fileID: 1154529844}
   - component: {fileID: 1154529846}
   - component: {fileID: 1154529845}
+  - component: {fileID: 1154529847}
   m_Layer: 0
   m_Name: Selected Image
   m_TagString: Untagged
@@ -1633,6 +1720,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154529843}
   m_CullTransparentMesh: 1
+--- !u!114 &1154529847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154529843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49db77b35bad73245854d561b0f45ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ground: {fileID: 262794023}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1210909990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2157,7 @@ MonoBehaviour:
   source: {fileID: 1743338259}
   shownDuration: 0.5
   hiddenDuration: 0.5
-  ease: 23
+  ease: 0
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 1, y: 1, z: 1}
   _isActivityChanged: 1
@@ -2601,7 +2704,7 @@ MonoBehaviour:
   source: {fileID: 2030652079}
   shownDuration: 0.5
   hiddenDuration: 0.5
-  ease: 23
+  ease: 0
   _from: {x: 0, y: 0, z: 0}
   _to: {x: 1, y: 1, z: 1}
   _isActivityChanged: 1
