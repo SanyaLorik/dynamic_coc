@@ -9,6 +9,7 @@ public class InputInstaller : MonoInstaller
     {
         Container
             .BindInterfacesAndSelfTo(typeof(InputJoystick))
+            .FromInstance(_joystick)
             .AsCached()
             .NonLazy();
     }
