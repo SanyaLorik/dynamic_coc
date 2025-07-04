@@ -39,7 +39,9 @@ public class BuildingPlacement
             return;
         }
 
-        _spawner.Spawn(_buildingTemplate.Building, _buildingTemplate.transform.position);
+        BuildingAbstract build = _spawner.Spawn(_buildingTemplate.Building, _buildingTemplate.transform.position);
+        build.AnimatePlace();
+
         DestroyPrevious();
     }
 
