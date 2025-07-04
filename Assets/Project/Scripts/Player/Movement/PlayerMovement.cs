@@ -21,6 +21,6 @@ public class PlayerMovement : IFixedTickable
         if (_input.DirectionMovement == Vector3.zero)
             return;
 
-        _rigidbody.linearVelocity = _input.DirectionMovement * _config.PlayerSpeed;
+        _rigidbody.linearVelocity = _input.DirectionMovement * _config.PlayerMovementSpeed;
     }
 }
