@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class BuildingBase : MonoBehaviour
+public abstract class BuildingAbstract : MonoBehaviour
 {
     [field: SerializeField] public float Price { get; private set; }
 }
-

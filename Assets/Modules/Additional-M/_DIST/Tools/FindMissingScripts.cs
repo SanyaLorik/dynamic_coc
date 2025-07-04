@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MissingScriptDetector : MonoBehaviour
 {
+    /*
     public void FindMissingScriptsInScene()
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
@@ -22,7 +23,7 @@ public class MissingScriptDetector : MonoBehaviour
 
         Debug.Log($"Total missing scripts in scene: {missingCount}");
     }
-
+    */
     public void FindMissingScriptsInChildren()
     {
         Transform[] allChildren = GetComponentsInChildren<Transform>(true);

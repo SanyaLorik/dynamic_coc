@@ -1,7 +1,6 @@
 using _KotletaGames.Additional_M;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class BuildingPlacement
@@ -29,6 +28,21 @@ public class BuildingPlacement
         _pointerDragOnGround.OnDragPositionChanged -= OnSetPosition;
     }
 
+    public void Place()
+    {
+        if (_buildingTemplate == null)
+            return;
+
+        if (_buildingTemplate.CanPlace == false)
+        {
+            Debug.Log("Пересекает!");
+            return;
+        }
+
+        _spawner.Spawn(_buildingTemplate.Building, _buildingTemplate.transform.position);
+        DestroyPrevious();
+    }
+
     private void OnSetPosition(Vector3 position)
     {
         if (_buildingTemplate == null)
@@ -48,10 +62,4 @@ public class BuildingPlacement
         if (_buildingTemplate != null)
             _buildingTemplate.DestroySelf();
     }
-}
-
-public class BuildingButton : MonoBehaviour
-{
-    [field: SerializeField] public Button Button { get; private set; }
-    [field: SerializeField] public BuildingTemplate Template { get; private set; }
 }
