@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
-public abstract class BuildingAbstract : MonoBehaviour, IDamageable
+public abstract class EnemyAbstract : MonoBehaviour, IDamageable
 {
+    [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Health _health;
-    [SerializeField] private ShakeScaleAnimation _animationPlace;
 
-    [field: SerializeField] public float Price { get; private set; }
-    [field: SerializeField] public bool IsAllowDamage { get; private set; } = true;
+    public bool IsAllowDamage { get; private set; } = true;
 
-    public void AnimatePlace()
+    public void MoveTo(Vector3 target)
     {
-        _animationPlace.Shake();
+        _agent.Move(target);
     }
 
     public void Damage(int value)
