@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Wallet : MonoBehaviour
+[Serializable]
+public class Wallet
 {
     [field: SerializeField] public long Count {  get; private set; }
 
