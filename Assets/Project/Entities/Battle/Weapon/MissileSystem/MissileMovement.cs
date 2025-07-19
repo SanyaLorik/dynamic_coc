@@ -29,7 +29,9 @@ public class MissileMovement : MonoBehaviour
 
             // Поворот в направлении движения
             if (progress < 0.95f) // Чтобы не дергался в конце
-                missile.forward = (linearPosition + Vector3.up * verticalOffset - missile.position).normalized;
+            {
+               missile.forward = (linearPosition + Vector3.up * verticalOffset - missile.position).normalized/* + new Vector3(0.01f, 0.01f, 0.01f)*/;
+            }
 
             await UniTask.Yield(destroyCancellationToken);
         }

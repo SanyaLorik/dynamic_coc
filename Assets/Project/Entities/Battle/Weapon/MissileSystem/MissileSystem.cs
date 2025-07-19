@@ -6,7 +6,7 @@ public class MissileSystem : MonoBehaviour
 {
     [SerializeField] private MissileMovement _movement;
     [SerializeField] private MissileDamageExplotion _damageExplotion;
-    [SerializeField] private OnlyContianerPrefabSpawner<GameObject> _spawner;
+    [SerializeField] private PrefabSpawner<GameObject> _spawner;
 
     public async UniTaskVoid Launch(Vector3 target)
     {

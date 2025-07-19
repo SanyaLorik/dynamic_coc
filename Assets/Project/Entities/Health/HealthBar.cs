@@ -19,6 +19,11 @@ public class HealthBar : MonoBehaviour
         ControlActivityByFlag();
     }
 
+    private void Start()
+    {
+        OnUpdate(_health.Current);
+    }
+
     private void OnEnable()
     {
         _health.OnChanged += OnUpdate;
@@ -33,7 +38,7 @@ public class HealthBar : MonoBehaviour
     {
         ControlActivityByFlag();
 
-        float ratio = (float)_health.MaxHealth / (float)_health.Current;
+        float ratio = (float)value / (float)_health.MaxHealth;
 
         _tween?.Kill();
         _tween = _image.DOFillAmount(ratio, _duration);

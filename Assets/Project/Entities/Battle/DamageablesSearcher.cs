@@ -5,31 +5,37 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class DamageablesSearcher : MonoBehaviour
 {
-    private readonly HashSet<IDamageable> _damageables = new();
-    private readonly HashSet<IDamageable> _exceptions = new();
-    private readonly List<DamageableContainer> _resultContainers = new();
+    [SerializeField] private Transform _center;
+    [SerializeField] private TeamType _searchingTeam;
 
-    public IReadOnlyList<DamageableContainer> DamageablesWithoutExceptions
+    private readonly HashSet<IDamageable> _damageables = new();
+
+    public IReadOnlyList<DamageableContainer> Damageables
     {
         get
         {
-            _resultContainers.Clear();
+            List<DamageableContainer> result = new();
+
+            Vector3 centerPosition = _center.position;
 
             foreach (var damageable in _damageables)
             {
-                if (damageable != null && _exceptions.Contains(damageable) == false)
-                {
-                    MonoBehaviour damageableMonoBehaviour = damageable as MonoBehaviour;
-                    if (damageableMonoBehaviour == null)
-                        continue;
+                MonoBehaviour damageableMonoBehaviour = damageable as MonoBehaviour;
+                if (damageableMonoBehaviour == null)
+                    continue;
 
-                    Vector3 position = damageableMonoBehaviour.transform.position;
-                    _resultContainers.Add(new DamageableContainer(position, damageable));
-                }
+                Vector3 position = damageableMonoBehaviour.transform.position;
+                result.Add(new DamageableContainer(position, damageable));
             }
 
-            return _resultContainers;
+            result.Sort((a, b) =>
+            {
+                float sqrDistA = (centerPosition - a.Position).sqrMagnitude;
+                float sqrDistB = (centerPosition - b.Position).sqrMagnitude;
+                return sqrDistA.CompareTo(sqrDistB);
+            });
 
+            return result;
         }
     }
 
@@ -54,35 +60,25 @@ public class DamageablesSearcher : MonoBehaviour
         TryRemoveDamageable(other.gameObject);
     }
 
-    public void AddException(IDamageable damageable)
-    {
-        _exceptions.Add(damageable);
-    }
-
-    public void RemoveException(IDamageable damageable)
-    {
-        _exceptions.Remove(damageable);
-    }
-
-    public void ClearExceptions()
-    {
-        _exceptions.Clear();
-    }
-
     private void TryAddDamageable(GameObject gameObject)
     {
-        if (gameObject.TryGetComponent(out IDamageable damageable))
-        {
+        if (gameObject.TryGetComponent(out IDamageable damageable) == false)
+            return;
+
+        if (damageable.Team != _searchingTeam)
+            return;
+
+        if (_damageables.Contains(damageable) == false)
             _damageables.Add(damageable);
-        }
     }
 
     private void TryRemoveDamageable(GameObject gameObject)
     {
-        if (gameObject.TryGetComponent(out IDamageable damageable))
-        {
+        if (gameObject.TryGetComponent(out IDamageable damageable) == false)
+            return;
+
+        if (_damageables.Contains(damageable) == true)
             _damageables.Remove(damageable);
-        }
     }
 }
 

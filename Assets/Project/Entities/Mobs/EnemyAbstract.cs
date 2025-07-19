@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
+[RequireComponent(typeof(Collider))]
 public abstract class EnemyAbstract : MonoBehaviour, IDamageable
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Health _health;
+    [field: SerializeField] public TeamType Team { get; private set; }
 
     [Inject] private MobDirector _mobDirector;
 

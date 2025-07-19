@@ -2056,6 +2056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 756589130}
   _animationPlace: {fileID: 756589131}
+  <Team>k__BackingField: 0
   <Center>k__BackingField: {fileID: 756589127}
   <OffsetByCenter>k__BackingField: 2
   <Price>k__BackingField: 0

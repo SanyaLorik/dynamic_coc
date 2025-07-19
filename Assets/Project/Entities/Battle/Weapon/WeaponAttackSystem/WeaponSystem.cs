@@ -26,8 +26,8 @@ public class WeaponSystem : MonoBehaviour
 
     private void Attack()
     {
-        IReadOnlyList<DamageableContainer> damageables = _damageablesSearcher.DamageablesWithoutExceptions;
-        int count = Math.Clamp(damageables.Count, 0, _weapon.CountTarget - 1); // _weapon.CountTarget - 1 - из за индексации в массив
+        IReadOnlyList<DamageableContainer> damageables = _damageablesSearcher.Damageables;
+        int count = Math.Clamp(damageables.Count, 0, _weapon.CountTarget);
 
         for (int i = 0; i < count; i++)
             _weapon.Shoot(damageables[i].Position);
@@ -35,6 +35,6 @@ public class WeaponSystem : MonoBehaviour
 
     private bool HasTarget()
     {
-        return _damageablesSearcher.DamageablesWithoutExceptions.Count > 0;
+        return _damageablesSearcher.Damageables.Count > 0;
     }
 }

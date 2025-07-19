@@ -4,6 +4,7 @@ public abstract class BuildingAbstract : MonoBehaviour, IDamageable, ITargetable
 {
     [SerializeField] private Health _health;
     [SerializeField] private ShakeScaleAnimation _animationPlace;
+    [field: SerializeField] public TeamType Team { get; private set; }
 
     [field: SerializeField] public Transform Center { get; private set; }
     [field: SerializeField] public float OffsetByCenter { get; private set; }
