@@ -33,7 +33,7 @@ public abstract class BuildingAbstract : MonoBehaviour, IDamageable, ITargetable
         if (_health.IsDead == true)
             return;
 
-        _health.Change(value);
+        _health.Reduce(value);
 
         if (_health.IsDead == true)
             DestroySelf();

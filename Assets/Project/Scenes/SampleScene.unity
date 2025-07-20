@@ -2408,7 +2408,7 @@ MonoBehaviour:
   _image: {fileID: 427495985}
   _duration: 0.5
   _healthContainer: {fileID: 77733020}
-  _isHideFullHealth: 1
+  _isShownFullHealth: 0
 --- !u!114 &756589130
 MonoBehaviour:
   m_ObjectHideFlags: 0

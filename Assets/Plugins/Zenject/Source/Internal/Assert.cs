@@ -429,5 +429,10 @@ namespace ModestTree
         {
             return new ZenjectException(message.Fmt(parameters), innerException);
         }
+
+        public static void IsTrue(bool v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

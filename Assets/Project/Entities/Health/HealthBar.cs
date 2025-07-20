@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private float _duration;
 
     [SerializeField] private GameObject _healthContainer;
-    [SerializeField] private bool _isHideFullHealth;
+    [SerializeField] private bool _isShownFullHealth;
 
     private Tween _tween;
 
@@ -46,8 +46,11 @@ public class HealthBar : MonoBehaviour
 
     private void ControlActivityByFlag()
     {
-        if (_isHideFullHealth == false)
+        if (_isShownFullHealth == false)
+        {
+            _healthContainer.ActiveSelf();
             return;
+        }
 
         if (_health.Full == true)
             _healthContainer.DisactiveSelf();

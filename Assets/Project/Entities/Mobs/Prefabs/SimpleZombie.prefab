@@ -65,14 +65,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2108835078877158047
@@ -460,8 +460,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5274755819800781405}
-  - component: {fileID: 8455370329254628264}
   - component: {fileID: 275706244574022241}
+  - component: {fileID: 8455370329254628264}
   - component: {fileID: 4894668774886538747}
   - component: {fileID: 2141417445575622465}
   - component: {fileID: 3752384342303616142}
@@ -489,6 +489,27 @@ Transform:
   - {fileID: 3609583826759222357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &275706244574022241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486079711920903101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &8455370329254628264
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -511,27 +532,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &275706244574022241
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486079711920903101}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4894668774886538747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
   _agent: {fileID: 8455370329254628264}
   _health: {fileID: 2141417445575622465}
   <Team>k__BackingField: 1
+  _coinsForDead: 0
 --- !u!114 &2141417445575622465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99702cd54c6e81343b466de5267c2656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 10
-  <Current>k__BackingField: 10
+  <MaxHealth>k__BackingField: 100
+  <Current>k__BackingField: 100
 --- !u!114 &3752384342303616142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,9 +576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 2141417445575622465}
   _image: {fileID: 1760400804645038516}
-  _duration: 10
+  _duration: 0.1
   _healthContainer: {fileID: 6222801222442732663}
-  _isHideFullHealth: 1
+  _isShownFullHealth: 1
 --- !u!1 &9126978026581463806
 GameObject:
   m_ObjectHideFlags: 0

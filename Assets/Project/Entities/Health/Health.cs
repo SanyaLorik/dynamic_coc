@@ -1,3 +1,4 @@
+using ModestTree;
 using System;
 using UnityEngine;
 
@@ -19,10 +20,19 @@ public class Health : MonoBehaviour, IHealthWatcher
         Current = MaxHealth;
     }
 
-    public void Change(int value)
+    public void Add(int value)
+    {
+        Change(value);
+    }
+
+    public void Reduce(int value)
+    {
+        Change(-value);
+    }
+
+    private void Change(int value)
     {
         Current = Mathf.Clamp(Current + value, 0, MaxHealth);
-
         OnChanged?.Invoke(Current);
     }
 }

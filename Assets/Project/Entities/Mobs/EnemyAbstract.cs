@@ -10,8 +10,10 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamageable
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Health _health;
     [field: SerializeField] public TeamType Team { get; private set; }
+    [SerializeField] private int _coinsForDead;
 
     [Inject] private MobDirector _mobDirector;
+    [Inject] private Currency _currency;
 
     public bool IsAllowDamage => _health.IsAlive;
 
@@ -30,7 +32,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamageable
         if (_health.IsDead == true)
             return;
 
-        _health.Change(value);
+        _health.Reduce(value);
 
         if (_health.IsDead == true)
             DestroySelf();
@@ -38,6 +40,6 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamageable
 
     private void DestroySelf()
     {
-        throw new NotImplementedException();
+        _currency.Coins.Add(_coinsForDead);
     }
 }
