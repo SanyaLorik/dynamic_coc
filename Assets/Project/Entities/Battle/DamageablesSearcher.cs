@@ -14,6 +14,9 @@ public class DamageablesSearcher : MonoBehaviour
     {
         get
         {
+            if (_center == null)
+                return new List<DamageableContainer>();
+
             List<DamageableContainer> result = new();
 
             Vector3 centerPosition = _center.position;

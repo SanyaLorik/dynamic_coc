@@ -16,15 +16,15 @@ public class Wallet
 
     public void Add(long value)
     {
-        Assert.IsTrue(value < 0, "Value is not less then zero!");
+        Assert.IsFalse(value < 0, "Value is not less then zero!");
 
         Change(value);
     }
 
     public void Reduce(long value)
     {
-        Assert.IsTrue(value < 0, "Value is not less then zero!");
-        Assert.IsTrue(Count - value < 0, "(Count - value) is not less then zero!");
+        Assert.IsFalse(value < 0, "Value is not less then zero!");
+        Assert.IsFalse(Count - value < 0, "(Count - value) is not less then zero!");
 
         Change(-value);
     }

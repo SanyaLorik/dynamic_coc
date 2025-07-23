@@ -7,6 +7,5 @@ public class GameLoop : MonoBehaviour
     private void Start()
     {
         EnemyAbstract enemy = _enemyFactory.Create();
-        enemy.Move().Forget();
     }
 }

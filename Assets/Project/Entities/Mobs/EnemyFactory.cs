@@ -16,7 +16,7 @@ public class EnemyFactory : MonoBehaviour
         Vector3 position = _dislocation.GetPosition();
 
         EnemyAbstract enemyAbstract = _spawner.Spawn(prefab, position);
-        _diContainer.Inject(enemyAbstract);
+        _diContainer.InjectGameObject(enemyAbstract.gameObject);
 
         return enemyAbstract;   
     }

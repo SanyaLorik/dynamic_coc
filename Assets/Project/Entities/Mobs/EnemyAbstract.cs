@@ -1,45 +1,14 @@
 using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
-using UnityEngine.AI;
-using Zenject;
 
 [RequireComponent(typeof(Collider))]
-public abstract class EnemyAbstract : MonoBehaviour, IDamageable
+public abstract class EnemyAbstract : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private Health _health;
-    [field: SerializeField] public TeamType Team { get; private set; }
-    [SerializeField] private int _coinsForDead;
+    [SerializeField] private EnemyMovement _movement;
+    [SerializeField] private EnemyHealth _health;
 
-    [Inject] private MobDirector _mobDirector;
-    [Inject] private Currency _currency;
-
-    public bool IsAllowDamage => _health.IsAlive;
-
-    public async UniTaskVoid Move()
+    private void Start()
     {
-        do
-        {
-            MobTarget mobTarget = await _mobDirector.GetMobTarget(transform.position, destroyCancellationToken);
-            _agent.SetDestination(mobTarget.Target);
-        }
-        while (destroyCancellationToken.IsCancellationRequested == false);
-    }
-
-    public void Damage(int value)
-    {
-        if (_health.IsDead == true)
-            return;
-
-        _health.Reduce(value);
-
-        if (_health.IsDead == true)
-            DestroySelf();
-    }
-
-    private void DestroySelf()
-    {
-        _currency.Coins.Add(_coinsForDead);
+        _movement.StartMoving().Forget();
     }
 }
