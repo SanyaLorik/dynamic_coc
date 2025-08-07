@@ -1,46 +1,26 @@
 using UnityEngine;
 
-public abstract class BuildingAbstract : MonoBehaviour, IDamageable, ITargetable
+public abstract class BuildingAbstract : MonoBehaviour
 {
-    [SerializeField] private Health _health;
-    [SerializeField] private ShakeScaleAnimation _animationPlace;
-    [field: SerializeField] public TeamType Team { get; private set; }
+    [SerializeField] private BuildingHealth _health;
+    [SerializeField] private BuildingVisualEffects _visualEffects;
+    [SerializeField] private BuildingTargeting _targeting;
+    [SerializeField] private BuildingEconomics _economics;
+    [SerializeField] private BuildingDestruction _destruction;
 
-    [field: SerializeField] public Transform Center { get; private set; }
-    [field: SerializeField] public float OffsetByCenter { get; private set; }
-    [field: SerializeField] public float Price { get; private set; }
-
-    public bool IsAllowDamage => _health.IsAlive;
-
-    public IHealthWatcher HealthWatcher => _health;
-
-    public Vector3 Position => Center == null ? Vector3.zero : Center.position;
-
-    private EntityCollection _entityCollection;
-
-    public void Init(EntityCollection entityCollection)
+    public void Initialize(EntityCollection collection)
     {
-        _entityCollection = entityCollection;   
+        _destruction.Initialize(collection, this);
+        _health.OnDestroyed += OnDestroyedHandler;
     }
 
-    public void AnimatePlace()
+    private void OnDestroyedHandler()
     {
-        _animationPlace.Shake();
+        // Логика при уничтожении
     }
 
-    public void Damage(int value)
+    public void Place()
     {
-        if (_health.IsDead == true)
-            return;
-
-        _health.Reduce(value);
-
-        if (_health.IsDead == true)
-            DestroySelf();
-    }
-
-    private void DestroySelf()
-    {
-        _entityCollection.RemoveBuilding(this);
+        _visualEffects.PlayPlacementAnimation();
     }
 }
