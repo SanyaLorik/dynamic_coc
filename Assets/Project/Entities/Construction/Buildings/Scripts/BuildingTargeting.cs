@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BuildingTargeting : MonoBehaviour, ITargetable
@@ -8,5 +7,5 @@ public class BuildingTargeting : MonoBehaviour, ITargetable
 
     public Vector3 Position => _center.position + _center.forward * _offsetByCenter;
 
-    public float OffsetByCenter => throw new NotImplementedException();
+    public float OffsetByCenter => _offsetByCenter;
 }

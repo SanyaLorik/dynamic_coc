@@ -32,7 +32,8 @@ public class MobDirector
         }
 
         Vector3 position = closest.Position - (closest.Position - mobPosition).normalized * closest.OffsetByCenter;
-        MobTarget mobTarget = new(position);
+        MobTarget mobTarget 
+            = new(position);
 
         return mobTarget;
     }

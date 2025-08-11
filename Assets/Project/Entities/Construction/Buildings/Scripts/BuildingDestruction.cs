@@ -16,4 +16,9 @@ public class BuildingDestruction : MonoBehaviour
         _entityCollection.RemoveBuilding(_building);
         Destroy(gameObject);
     }
+
+    public void DestroyInstant()
+    {
+        Destroy(gameObject);
+    }
 }

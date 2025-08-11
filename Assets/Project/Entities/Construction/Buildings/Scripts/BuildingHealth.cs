@@ -4,7 +4,6 @@ using UnityEngine;
 public class BuildingHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private Health _health;
-    [SerializeField] private BuildingDestruction _destruction;
 
     [field: SerializeField] public TeamType Team { get; private set; }
 
@@ -14,14 +13,12 @@ public class BuildingHealth : MonoBehaviour, IDamageable
 
     public void Damage(int value)
     {
-        if (!IsAllowDamage) return;
+        if (IsAllowDamage == false)
+            return;
 
         _health.Reduce(value);
 
         if (_health.IsDead)
-        {
-            _destruction.Destroy();
             OnDestroyed?.Invoke();
-        }
     }
 }

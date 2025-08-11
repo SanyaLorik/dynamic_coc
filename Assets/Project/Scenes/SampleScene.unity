@@ -1263,9 +1263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.9982565, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2328,6 +2328,12 @@ GameObject:
   - component: {fileID: 756589130}
   - component: {fileID: 756589129}
   - component: {fileID: 756589131}
+  - component: {fileID: 756589139}
+  - component: {fileID: 756589138}
+  - component: {fileID: 756589137}
+  - component: {fileID: 756589136}
+  - component: {fileID: 756589135}
+  - component: {fileID: 756589134}
   m_Layer: 0
   m_Name: TownHall
   m_TagString: Untagged
@@ -2364,12 +2370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0caf490bf6cfe894a92687e31dcba769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 756589130}
-  _animationPlace: {fileID: 756589131}
-  <Team>k__BackingField: 0
-  <Center>k__BackingField: {fileID: 756589127}
-  <OffsetByCenter>k__BackingField: 2
-  <Price>k__BackingField: 0
+  _health: {fileID: 756589139}
+  _visualEffects: {fileID: 756589138}
+  _targeting: {fileID: 756589137}
+  _economics: {fileID: 756589136}
+  _destruction: {fileID: 756589135}
+  _template: {fileID: 756589134}
 --- !u!114 &756589129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2467,86 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &756589134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7519e1e2ae282d741877a2f9b20bac5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlacementOffset>k__BackingField: {x: 0, y: 0.5, z: 0}
+  <PlacementSize>k__BackingField: {x: 1, y: 1, z: 1}
+--- !u!114 &756589135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722b0901b5dd3f14ab38d0213cde5c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &756589136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115a6bcf5f623f84e97ffbfba41ab539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _price: 50
+--- !u!114 &756589137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ae8a0290a6dda4ca8fd3c26e256a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _center: {fileID: 756589127}
+  _offsetByCenter: 2
+--- !u!114 &756589138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec71035250806c4180e407f1d6a2abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placementAnimation: {fileID: 756589131}
+--- !u!114 &756589139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e97723c50a23642ab2a7a7914f02fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 756589130}
+  <Team>k__BackingField: 0
 --- !u!1 &765806669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,9 +3427,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.17519307, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3581,7 +3667,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0410\u0427\u0410\u0422\u042C \u0421\u0422\u0420\u041E\u0419\u041A\u0423"
+  m_text: "\u0421\u0422\u0420\u041E\t\u0419\u041A\u0410"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3608,7 +3694,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.2
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4533,7 +4619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Button>k__BackingField: {fileID: 1978063953}
-  <Template>k__BackingField: {fileID: 7480484409586665344, guid: 5ab386f2fb59cf041bd3e2f7eb1bd667, type: 3}
+  <BuildingPrefab>k__BackingField: {fileID: 1459396588784679558, guid: 548ccf1de94f30b42872955815c887bf, type: 3}
 --- !u!1 &1984378609
 GameObject:
   m_ObjectHideFlags: 0

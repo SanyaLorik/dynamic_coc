@@ -1,11 +1,15 @@
-using System.Linq; 
+using Cysharp.Threading.Tasks;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class BuildingTemplate : MonoBehaviour
 {
-    [field: SerializeField] public BuildingAbstract Building { get; private set; }
     [field: SerializeField] public Vector3 PlacementOffset { get; private set; }
     [field: SerializeField] public Vector3 PlacementSize { get; private set; }
+
+    private BuildingAbstract _selfBuilding;
+    private CancellationTokenSource _tokenSource;
 
     public bool CanPlace { get; private set; } = false;
 
@@ -15,9 +19,32 @@ public class BuildingTemplate : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + PlacementOffset, PlacementSize);
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        CanPlace = IsOverlappingWithOtherBuildings() == false;
+        _tokenSource?.Cancel();
+        _tokenSource?.Dispose();
+    }
+
+    public void Initialize(BuildingAbstract selfBuilding)
+    {
+        _selfBuilding = selfBuilding;
+    }
+
+    public async UniTaskVoid StartPlacing()
+    {
+        _tokenSource = new();
+
+        while (_tokenSource.IsCancellationRequested == false)
+        {
+            await UniTask.Yield(cancellationToken: _tokenSource.Token);
+
+            CanPlace = IsOverlappingWithOtherBuildings() == false;
+        }
+    }
+
+    public void StopPlacing()
+    {
+        _tokenSource?.Cancel();
     }
 
     public bool IsOverlappingWithOtherBuildings()
@@ -29,14 +56,8 @@ public class BuildingTemplate : MonoBehaviour
         );
 
         return hitColliders.Any(collider =>
-            collider.TryGetComponent(out BuildingAbstract otherBuilding) &&
-            otherBuilding != Building
-        );
-    }
-
-
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
+           collider.TryGetComponent(out BuildingAbstract otherBuilding) &&
+           otherBuilding != _selfBuilding
+       );
     }
 }

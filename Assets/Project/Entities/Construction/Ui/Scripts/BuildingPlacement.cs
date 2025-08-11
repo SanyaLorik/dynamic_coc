@@ -10,14 +10,14 @@ public class BuildingPlacement : MonoBehaviour
 
     [Inject] private EntityCollection _entityCollection;
 
-    private BuildingTemplate _buildingTemplate;
+    private BuildingAbstract _buildingPattern;
 
     public void Init()
     {
         _pointerDragOnGround.ActiveSelf();
 
         _pointerDragOnGround.OnDragPositionChanged += OnSetPosition;
-        _buildingButtons.ForEach(i => i.Button.onClick.AddListener(() => Instantiate(i.Template)));
+        _buildingButtons.ForEach(i => i.Button.onClick.AddListener(() => InstantiateBuilding(i.BuildingPrefab)));
     }
 
     public void Deinit()
@@ -31,18 +31,18 @@ public class BuildingPlacement : MonoBehaviour
 
     public void Place()
     {
-        if (_buildingTemplate == null)
+        if (_buildingPattern == null)
             return;
 
-        if (_buildingTemplate.CanPlace == false)
+        if (_buildingPattern.CanPlace == false)
         {
             Debug.Log("Пересекает!");
             return;
         }
 
-        BuildingAbstract build = _spawner.Spawn(_buildingTemplate.Building, _buildingTemplate.transform.position);
-        build.Init(_entityCollection);
-        build.AnimatePlace();
+        BuildingAbstract build = _spawner.Spawn(_buildingPattern, _buildingPattern.transform.position);
+        build.Initialize(_entityCollection);
+        build.Place();
 
         _entityCollection.AddBuilding(build);
 
@@ -51,21 +51,28 @@ public class BuildingPlacement : MonoBehaviour
 
     private void OnSetPosition(Vector3 position)
     {
-        if (_buildingTemplate == null)
+        if (_buildingPattern == null)
             return;
 
-        _buildingTemplate.transform.position = position;
+        _buildingPattern.transform.position = position;
     }
 
-    private void Instantiate(BuildingTemplate buildingTemplate)
+    private void InstantiateBuilding(BuildingAbstract buildingPrefab)
     {
         DestroyPrevious();
-        _buildingTemplate = _spawner.Spawn(buildingTemplate, Vector3.zero);
+
+        _buildingPattern = _spawner.Spawn(buildingPrefab, Vector3.zero);
+        _buildingPattern.StartPlacing();
     }
 
     private void DestroyPrevious()
     {
-        if (_buildingTemplate != null)
-            _buildingTemplate.DestroySelf();
+        if (_buildingPattern == null)
+            return;
+
+        _buildingPattern.StopPlacing();
+        _buildingPattern.DestroySelfInstant();
+
+        _buildingPattern = null;
     }
 }

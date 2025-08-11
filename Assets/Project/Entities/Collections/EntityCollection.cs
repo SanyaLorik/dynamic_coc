@@ -14,7 +14,7 @@ public class EntityCollection
 
     public void AddBuilding(BuildingAbstract building)
     {
-        AddAlliance(building);
+        AddAlliance(building.Targetable);
 
         if (_buildings.Contains(building) == true)
             return;
@@ -24,7 +24,7 @@ public class EntityCollection
 
     public void RemoveBuilding(BuildingAbstract building)
     {
-        RemoveAlliance(building);
+        RemoveAlliance(building.Targetable);
 
         if (_buildings.Contains(building) == false)
             return;
