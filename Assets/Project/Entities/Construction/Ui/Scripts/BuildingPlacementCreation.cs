@@ -2,7 +2,7 @@ using _KotletaGames.Additional_M;
 using UnityEngine;
 using Zenject;
 
-public class BuildingPlacement : MonoBehaviour
+public class BuildingPlacementCreation : MonoBehaviour
 {
     [SerializeField] private BuildingButton[] _buildingButtons;
     [SerializeField] private PositionSpawner _spawner;
@@ -12,7 +12,7 @@ public class BuildingPlacement : MonoBehaviour
 
     private BuildingAbstract _buildingPattern;
 
-    public void Init()
+    public void Initialize()
     {
         _pointerDragOnGround.ActiveSelf();
 
@@ -20,7 +20,7 @@ public class BuildingPlacement : MonoBehaviour
         _buildingButtons.ForEach(i => i.Button.onClick.AddListener(() => InstantiateBuilding(i.BuildingPrefab)));
     }
 
-    public void Deinit()
+    public void Deinitialize()
     {
         _pointerDragOnGround.DisactiveSelf();
         DestroyPrevious();

@@ -5,10 +5,11 @@ using Zenject;
 public class ViewModelConstruction : MonoBehaviour
 {
     [SerializeField] private AnimationConstruction _animation;
-    [SerializeField] private BuildingPlacement _buildingPlacement;
+    [SerializeField] private BuildingPlacementCreation _buildingPlacement;
     [SerializeField] private Button _startBuildings;
     [SerializeField] private Button _stopBuildings;
     [SerializeField] private Button _placeBuildings;
+    [SerializeField] private Button _movingBuildings;
 
     [Inject] private IInputService _inputService;
 
@@ -30,14 +31,14 @@ public class ViewModelConstruction : MonoBehaviour
     {
         _animation.Show().Forget();
         _inputService.Disable();
-        _buildingPlacement.Init();
+        _buildingPlacement.Initialize();
     }
 
     private void OnStopBuilding()
     {
         _animation.Hide().Forget();
         _inputService.Enable();
-        _buildingPlacement.Deinit();
+        _buildingPlacement.Deinitialize();
     }
 
     private void OnPlaceBuilding()

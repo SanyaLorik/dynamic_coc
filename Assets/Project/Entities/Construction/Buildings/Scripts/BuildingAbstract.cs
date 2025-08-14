@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BuildingAbstract : MonoBehaviour
@@ -9,6 +9,7 @@ public abstract class BuildingAbstract : MonoBehaviour
     [SerializeField] private BuildingEconomics _economics;
     [SerializeField] private BuildingDestruction _destruction;
     [SerializeField] private BuildingTemplate _template;
+    [SerializeField] private List<BuildingOpportunityAbstract> _opportunities;
 
     public bool CanPlace => _template.CanPlace;
 
@@ -17,6 +18,11 @@ public abstract class BuildingAbstract : MonoBehaviour
     public void Awake()
     {
         _template.Initialize(this);
+    }
+
+    public IReadOnlyList<BuildingOpportunityAbstract> GetOpportunities()
+    {
+        return _opportunities.FindAll(opp => opp.IsAvailable).AsReadOnly();
     }
 
     public void Initialize(EntityCollection collection)
